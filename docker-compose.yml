@@ -2,7 +2,7 @@ version: "3"
 
 services:
   reverse-proxy:
-    image: traefik:v2.0
+    image: traefik:v2.1
     command:
       - --api.insecure=true
       - --providers.docker=true
@@ -25,8 +25,8 @@ services:
 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.my-web.rule=PathPrefix(`/w`) && Host(`example.com`)"
+      - "traefik.http.routers.my-web.rule=PathPrefix(`/dotnet`) && Host(`example.com`)"
       - "traefik.http.services.my-web.loadbalancer.server.port=80"
       - "traefik.http.routers.my-web.entrypoints=web"
       - "traefik.http.routers.my-web.middlewares=sss"
-      - "traefik.http.middlewares.sss.stripprefix.prefixes=/w"
+      - "traefik.http.middlewares.sss.stripprefix.prefixes=/dotnet"
